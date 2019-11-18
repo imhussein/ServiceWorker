@@ -1,199 +1,207 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Home</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <style>
+      body {
+        font-family: "Operator Mono";
+      }
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <title>Home</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
-  <style>
-    body {
-      font-family: "Operator Mono";
-    }
+      .status {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        display: inline-block;
+        background-color: green;
+        line-height: 45px;
+        margin-left: 4px;
+      }
 
-    .status {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      display: inline-block;
-      background-color: green;
-      line-height: 45px;
-      margin-left: 4px;
-    }
+      .status.online {
+        background-color: green;
+      }
 
-    .status.online {
-      background-color: green;
-    }
+      .status.offline {
+        background-color: red;
+      }
+    </style>
+  </head>
 
-    .status.offline {
-      background-color: red;
-    }
-  </style>
-</head>
+  <body>
+    <nav class="navbar navbar-expand-sm bg-light py-0 mb-3">
+      <div class="container">
+        <a href="/" class="navbar-brand text-dark">Home</a>
+        <button
+          class="navbar-toggler"
+          data-toggle="collapse"
+          data-target="#navbarCollapse"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item login">
+              <a href="/login" class="nav-link text-white">Login</a>
+            </li>
+            <li class="nav-item logout">
+              <a href="/" onclick="logout()" class="nav-link text-white"
+                >Logout</a
+              >
+            </li>
 
-<body>
-  <nav class="navbar navbar-expand-sm bg-light py-0 mb-3">
-    <div class="container">
-      <a href="/" class="navbar-brand text-dark">Home</a>
-      <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarCollapse">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item login">
-            <a href="/login" class="nav-link text-white">Login</a>
-          </li>
-          <li class="nav-item logout">
-            <a href="/" onclick="logout()" class="nav-link text-white">Logout</a>
-          </li>
-
-          <li class="nav-item">
-            <a href="" class="nav-link text-white">
-              Status <span class="status"></span>
-            </a>
-          </li>
-        </ul>
+            <li class="nav-item">
+              <a href="" class="nav-link text-white">
+                Status <span class="status"></span>
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
-    </div>
-  </nav>
-  <div class="container">
-    <div class="alert-message"></div>
-    <div class="row">
-      <div class="col-md-6 mx-auto">
-        <form action="/" method="POST">
-          <div class="card">
-            <div class="card-header text-center">Add</div>
-            <div class="card-body">
-              <div class="form-group">
-                <label for="title">Title</label>
-                <input type="text" name="title" id="title" class="form-control form-control-lg" />
+    </nav>
+    <div class="container">
+      <div class="alert-message"></div>
+      <div class="row">
+        <div class="col-md-6 mx-auto">
+          <form action="/" method="POST">
+            <div class="card">
+              <div class="card-header text-center">Add</div>
+              <div class="card-body">
+                <div class="form-group">
+                  <label for="title">Title</label>
+                  <input
+                    type="text"
+                    name="title"
+                    id="title"
+                    class="form-control form-control-lg"
+                  />
+                </div>
+              </div>
+              <div class="card-footer">
+                <input type="submit" value="Add" class="btn btn-primary" />
               </div>
             </div>
-            <div class="card-footer">
-              <input type="submit" value="Add" class="btn btn-primary" />
-            </div>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
     </div>
-  </div>
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
-  </script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
-  </script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
-  </script>
-  <script>
-    let element = document.querySelector(".status");
-    let isOnline = ("onLine" in navigator);
-    let svcWorker;
-    var svcWorkerRegisteration;
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      let element = document.querySelector(".status");
+      let isOnline = "onLine" in navigator;
+      let svcWorker;
+      var svcWorkerRegisteration;
 
-    window.addEventListener("online", function () {
-      element.classList.add("online");
-      element.classList.remove("offline")
-    });
-
-    window.addEventListener("offline", function () {
-      element.classList.add("offline");
-      element.classList.remove("online");
-    });
-
-    async function initServerWorker() {
-      if ('serviceWorker' in navigator) {
-        svcWorkerRegisteration = await navigator.serviceWorker.register("/SW.js", {
-          updateViaCache: 'none',
-        });
-
-        svcWorker = svcWorkerRegisteration.installing || svcWorkerRegisteration.waiting || svcWorkerRegisteration
-          .active;
-
-        navigator.serviceWorker.oncontrollerchange = function () {
-          svcWorker = navigator.serviceWorker.controller;
-        }
-      }
-    }
-
-    initServerWorker().catch(err => {
-      console.log(err);
-    });
-
-    function logout() {
-      localStorage.clear();
-    }
-    if (localStorage.getItem("jwtAuthToken") !== null) {
-      document.querySelector(".login").style.display = "none";
-      let alert = document.createElement("div");
-      alert.classList.add("alert");
-      alert.classList.add("alert-success");
-      alert.classList.add("mb-3");
-      alert.classList.add("text-center");
-      alert.textContent = "Logged In";
-      document.querySelector(".alert-message").appendChild(alert);
-      setTimeout(function () {
-        document.querySelector(".alert").style.display = "none";
-      }, 3000);
-      let row = document.createElement("div");
-      row.classList.add("row");
-      row.classList.add("mt-4");
-      document.querySelectorAll(".container")[1].appendChild(row);
-      let xhr = new XMLHttpRequest();
-      document.forms[0].addEventListener("submit", function (e) {
-        e.preventDefault();
-        xhr.open("POST", "http://localhost:3000", true);
-        xhr.setRequestHeader("Content-Type", "application/json");
-        xhr.onload = function () {
-          if (this.status === 200) {
-            let card = document.createElement("div");
-            card.classList.add("card");
-            let header = document.createElement("div");
-            header.classList.add("card-header");
-            header.textContent = e.target[0].value;
-            let button = document.createElement("button");
-            button.classList.add("btn");
-            button.classList.add("btn-danger");
-            button.classList.add("btn-sm");
-            button.textContent = "Delete";
-            let footer = document.createElement("div");
-            footer.classList.add("card-footer");
-            footer.appendChild(button);
-            card.appendChild(header);
-            card.appendChild(footer);
-            let column = document.createElement("div");
-            column.classList.add("col-sm-3");
-            column.classList.add("mb-3");
-            column.append(card);
-            row.appendChild(column);
-            document.querySelector("input").value = "";
-          }
-        };
-        xhr.send(JSON.stringify({
-          value: e.target[0].value
-        }));
+      window.addEventListener("online", function() {
+        element.classList.add("online");
+        element.classList.remove("offline");
       });
 
-      function getDataFROMAPI() {
+      window.addEventListener("offline", function() {
+        element.classList.add("offline");
+        element.classList.remove("online");
+      });
+
+      async function initServerWorker() {
+        if ("serviceWorker" in navigator) {
+          svcWorkerRegisteration = await navigator.serviceWorker.register(
+            "/SW.js",
+            {
+              updateViaCache: "none"
+            }
+          );
+
+          svcWorker =
+            svcWorkerRegisteration.installing ||
+            svcWorkerRegisteration.waiting ||
+            svcWorkerRegisteration.active;
+
+          navigator.serviceWorker.oncontrollerchange = function(e) {
+            console.log(e, "New Service Worker Came");
+            svcWorker = navigator.serviceWorker.controller;
+          };
+
+          navigator.serviceWorker.addEventListener(
+            "message",
+            receiveMessagesFromServiceWorker
+          );
+        }
+      }
+
+      function sendMessagesToServiceWorker(target, message) {
+        if (target) {
+          target.postMessage(message);
+        } else if (svcWorker) {
+          svcWorker.postMessage(message);
+        } else {
+          navigator.serviceWorker.controller.postMessage(message);
+        }
+      }
+
+      async function receiveMessagesFromServiceWorker() {}
+
+      initServerWorker().catch(err => {
+        console.log(err);
+      });
+
+      function logout() {
+        localStorage.clear();
+      }
+      if (localStorage.getItem("jwtAuthToken") !== null) {
+        document.querySelector(".login").style.display = "none";
+        let alert = document.createElement("div");
+        alert.classList.add("alert");
+        alert.classList.add("alert-success");
+        alert.classList.add("mb-3");
+        alert.classList.add("text-center");
+        alert.textContent = "Logged In";
+        document.querySelector(".alert-message").appendChild(alert);
+        setTimeout(function() {
+          document.querySelector(".alert").style.display = "none";
+        }, 3000);
+        let row = document.createElement("div");
+        row.classList.add("row");
+        row.classList.add("mt-4");
+        document.querySelectorAll(".container")[1].appendChild(row);
         let xhr = new XMLHttpRequest();
-        xhr.open("GET", "http://localhost:3000/api", true);
-        xhr.onload = function () {
-          if (this.status === 200) {
-            for (let item of JSON.parse(this.response).data) {
+        document.forms[0].addEventListener("submit", function(e) {
+          e.preventDefault();
+          xhr.open("POST", "http://localhost:3000", true);
+          xhr.setRequestHeader("Content-Type", "application/json");
+          xhr.onload = function() {
+            if (this.status === 200) {
               let card = document.createElement("div");
               card.classList.add("card");
               let header = document.createElement("div");
               header.classList.add("card-header");
-              header.textContent = item.title;
+              header.textContent = e.target[0].value;
               let button = document.createElement("button");
               button.classList.add("btn");
               button.classList.add("btn-danger");
               button.classList.add("btn-sm");
               button.textContent = "Delete";
-              button.id = `/posts/${item.id}`;
               let footer = document.createElement("div");
               footer.classList.add("card-footer");
               footer.appendChild(button);
@@ -202,42 +210,78 @@
               let column = document.createElement("div");
               column.classList.add("col-sm-3");
               column.classList.add("mb-3");
-              column.id = `column-${item.id}`;
               column.append(card);
               row.appendChild(column);
+              document.querySelector("input").value = "";
             }
-          }
-        };
-        xhr.send();
-      }
-
-      getDataFROMAPI();
-
-      setTimeout(function () {
-        document.querySelectorAll(".btn-danger").forEach((item, index) => {
-          item.addEventListener("click", function (e) {
-            deletePost(item.getAttribute("id").split("/")[2]);
-          });
+          };
+          xhr.send(
+            JSON.stringify({
+              value: e.target[0].value
+            })
+          );
         });
-      }, 100);
 
-      function deletePost(id) {
-        document.getElementById(`column-${id}`).remove();
-        let xhr = new XMLHttpRequest();
-        xhr.open("GET", `http://localhost:3000/posts/${id}`, true);
-        xhr.onload = function () {
-          if (this.status === 200) {
-            document.getElementById(`column-${id}`).style.display = "none";
-            window.location.reload();
-          }
-        };
-        xhr.send();
+        function getDataFROMAPI() {
+          let xhr = new XMLHttpRequest();
+          xhr.open("GET", "http://localhost:3000/api", true);
+          xhr.onload = function() {
+            if (this.status === 200) {
+              for (let item of JSON.parse(this.response).data) {
+                let card = document.createElement("div");
+                card.classList.add("card");
+                let header = document.createElement("div");
+                header.classList.add("card-header");
+                header.textContent = item.title;
+                let button = document.createElement("button");
+                button.classList.add("btn");
+                button.classList.add("btn-danger");
+                button.classList.add("btn-sm");
+                button.textContent = "Delete";
+                button.id = `/posts/${item.id}`;
+                let footer = document.createElement("div");
+                footer.classList.add("card-footer");
+                footer.appendChild(button);
+                card.appendChild(header);
+                card.appendChild(footer);
+                let column = document.createElement("div");
+                column.classList.add("col-sm-3");
+                column.classList.add("mb-3");
+                column.id = `column-${item.id}`;
+                column.append(card);
+                row.appendChild(column);
+              }
+            }
+          };
+          xhr.send();
+        }
+
+        getDataFROMAPI();
+
+        setTimeout(function() {
+          document.querySelectorAll(".btn-danger").forEach((item, index) => {
+            item.addEventListener("click", function(e) {
+              deletePost(item.getAttribute("id").split("/")[2]);
+            });
+          });
+        }, 100);
+
+        function deletePost(id) {
+          document.getElementById(`column-${id}`).remove();
+          let xhr = new XMLHttpRequest();
+          xhr.open("GET", `http://localhost:3000/posts/${id}`, true);
+          xhr.onload = function() {
+            if (this.status === 200) {
+              document.getElementById(`column-${id}`).style.display = "none";
+              window.location.reload();
+            }
+          };
+          xhr.send();
+        }
+      } else {
+        document.querySelector(".logout").style.display = "none";
+        // location.pathname = "/login";
       }
-    } else {
-      document.querySelector(".logout").style.display = "none";
-      // location.pathname = "/login";
-    }
-  </script>
-</body>
-
+    </script>
+  </body>
 </html>
