@@ -160,7 +160,11 @@
         }
       }
 
-      async function receiveMessagesFromServiceWorker() {}
+      async function receiveMessagesFromServiceWorker(e) {
+        var { data } = e;
+        if (data.requestStatusUpdate) {
+        }
+      }
 
       initServerWorker().catch(err => {
         console.log(err);
