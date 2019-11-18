@@ -150,7 +150,7 @@
         }
       }
 
-      function sendMessagesToServiceWorker(target, message) {
+      function sendMessagesToServiceWorker(message, target) {
         if (target) {
           target.postMessage(message);
         } else if (svcWorker) {
@@ -163,7 +163,12 @@
       async function receiveMessagesFromServiceWorker(e) {
         var { data } = e;
         if (data.requestStatusUpdate) {
+          sendStatusUpdate(); // Here which service worker data will be sended from the main thread
         }
+      }
+
+      function sendStatusUpdate(target) {
+        sendMessagesToServiceWorker({ isOnline, isAuth: true }, target);
       }
 
       initServerWorker().catch(err => {
