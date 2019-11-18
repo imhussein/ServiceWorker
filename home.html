@@ -90,8 +90,9 @@
   </script>
   <script>
     let element = document.querySelector(".status");
-    let SWRegisteration;
+    let isOnline = ("onLine" in navigator);
     let svcWorker;
+    var svcWorkerRegisteration;
 
     window.addEventListener("online", function () {
       element.classList.add("online");
@@ -103,25 +104,24 @@
       element.classList.remove("online");
     });
 
-
-    // Init
-    async function initServiceWorker() {
+    async function initServerWorker() {
       if ('serviceWorker' in navigator) {
-        SWRegisteration = await navigator.serviceWorker.register('/SW.js', {
+        svcWorkerRegisteration = await navigator.serviceWorker.register("/SW.js", {
           updateViaCache: 'none',
         });
 
-        svcWorker = SWRegisteration.installing || SWRegisteration.waiting || SWRegisteration.active;
+        svcWorker = svcWorkerRegisteration.installing || svcWorkerRegisteration.waiting || svcWorkerRegisteration
+          .active;
 
-        navigator.serviceWorker.oncontrollerchange = function (e) {
+        navigator.serviceWorker.oncontrollerchange = function () {
           svcWorker = navigator.serviceWorker.controller;
         }
       }
     }
 
-    initServiceWorker().catch(err => {
+    initServerWorker().catch(err => {
       console.log(err);
-    })
+    });
 
     function logout() {
       localStorage.clear();
