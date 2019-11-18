@@ -6,11 +6,13 @@ const bodyParser = require("body-parser");
 app.use(express.json());
 const fs = require("fs");
 
+app.use(express.static(__dirname));
+
 app.get("/login", function(req, res) {
   res.sendFile(__dirname + "/index.html");
 });
 
-app.get("/", function(req, res) {
+app.get("/home", function(req, res) {
   res.sendFile(__dirname + "/home.html");
 });
 
@@ -66,4 +68,6 @@ app.get("/posts/:id", function(req, res) {
   });
 });
 
-app.listen(3000, () => {});
+app.listen(3000, () => {
+  console.log("Server Connected");
+});
